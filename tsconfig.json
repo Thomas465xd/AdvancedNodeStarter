@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "./",
+        "lib": ["esnext"],
+        "target": "ESNext",
+        "isolatedModules": true,
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+        "strict": false,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "types": ["jest"]
+    },
+    "include": ["**/*.ts"],
+    "exclude": ["dist", "client", "node_modules"]
+}
