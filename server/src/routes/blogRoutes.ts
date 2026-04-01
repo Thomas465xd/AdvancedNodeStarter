@@ -1,7 +1,7 @@
 import requireLogin from "../middlewares/requireLogin.js";
 import { Request, Response, Router } from "express";
 import Blog from "../models/Blog.js";
-import { getRedisClient } from "../config/redis.js";
+import clearCache from "../middlewares/clearCache.js";
 
 const router = Router(); 
 
@@ -15,12 +15,12 @@ router.get("/api/blogs/:id", requireLogin, async (req: Request, res: Response) =
 });
 
 router.get("/api/blogs", requireLogin, async (req: Request, res: Response) => {
-    const blogs = await Blog.find({ _user: req.user!.id });
+    const blogs = await Blog.find({ _user: req.user!.id }).cache({ key: req.user!.id });
     
     res.status(200).json(blogs);
 });
 
-router.post("/api/blogs", requireLogin, async (req: Request, res: Response) => {
+router.post("/api/blogs", requireLogin, clearCache, async (req: Request, res: Response) => {
     const { title, content } = req.body;
 
     const blog = new Blog({
@@ -31,6 +31,7 @@ router.post("/api/blogs", requireLogin, async (req: Request, res: Response) => {
 
     try {
         await blog.save();
+        console.log("Request Handler")
         res.status(201).json(blog);
     } catch (err) {
         res.status(400).json({ message: "Error saving Blog Post", err})

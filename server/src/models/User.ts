@@ -37,6 +37,11 @@ const userSchema = new Schema<UserInterface>(
 userSchema.index({ googleId: 1 }); 
 userSchema.index({ displayName: 1 }); 
 
+// Custom static "build" method
+userSchema.statics.build = (attrs: UserAttrs) => {
+    return new User(attrs);
+}
+
 const User = mongoose.model<UserInterface, UserModel>('User', userSchema)
 
 export default User

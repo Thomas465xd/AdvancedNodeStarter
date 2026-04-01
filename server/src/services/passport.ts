@@ -5,13 +5,18 @@ import { getKeys } from "../config/keys.js";
 import User from "../models/User.js";
 
 passport.serializeUser((user: any, done) => {
+	console.log("SERIALIZE user.id:", user.id, "user._id:", user._id);
 	done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-	User.findById(id).then((user) => {
-		done(null, user);
-	});
+	User.findById(id)
+		.then((user) => {
+			done(null, user);
+		})
+		.catch((err) => {
+			done(err);
+		});
 });
 
 const keys = await getKeys();
