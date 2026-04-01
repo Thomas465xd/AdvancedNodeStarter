@@ -20,9 +20,8 @@ router.get(
 );
 
 router.get("/auth/logout", (req: Request, res: Response) => {
-    req.logout(() => {
-        res.redirect("/");
-    });
+    (req.logout as () => void)();
+    res.redirect("/");
 });
 
 router.get("/api/current_user", (req: Request, res: Response) => {
