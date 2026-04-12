@@ -62,7 +62,7 @@ app.use(morgan("dev"));
 app.use(authRoutes);
 app.use(blogRoutes); 
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "ci") {
 	app.use(express.static("client/build"));
 
 	app.get("*", (req: Request, res: Response) => {
@@ -71,6 +71,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
 	console.log(colors.green(`Listening on Port ${colors.bold(`${PORT}`)}`));
 });

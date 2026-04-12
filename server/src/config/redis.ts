@@ -7,14 +7,12 @@ let client: RedisClientType;
 export const connectRedis = async () => {
     const keys = await getKeys(); 
 
-    const port =  13681;
-
     client = createClient({
         username: 'default',
         password: keys.redisPassword,
         socket: {
             host: keys.redisHost,
-            port
+            port: Number(keys.redisPort) || 6379
         }
     });
 
@@ -24,7 +22,7 @@ export const connectRedis = async () => {
 
 	await client.connect();
 
-	console.log(colors.red.bold(`Redis connected to host: ${keys.redisHost}:${port}`));
+	console.log(colors.red.bold(`Redis connected to host: ${keys.redisHost}:${keys.redisPort}`));
 };
 
 export const getRedisClient = () => client;
