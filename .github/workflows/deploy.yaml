@@ -45,7 +45,10 @@ jobs:
                   npm run build
             - name: Start server
               run: |
+                  cd server
                   nohup npm run start &
                   sleep 3
             - name: Run tests
-              run: npm run tests
+              run: |
+                  cd server
+                  npm run tests
