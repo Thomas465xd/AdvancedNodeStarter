@@ -16,7 +16,7 @@
     },
     "ts-node": {
         "esm": true,
-        "experimentalEsm": true
+        "experimentalResolver": true
     },
     "include": ["src/**/*.ts"],
     "exclude": ["dist", "client", "node_modules"]

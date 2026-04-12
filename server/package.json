@@ -10,6 +10,7 @@
 		"client": "npm run start --prefix ../client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"tests": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watchAll",
+		"test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
 		"build": "cross-env NPM_CONFIG_PRODUCTION=false npm install --legacy-peer-deps --prefix ../client && npm run build --prefix ../client",
 		"heroku-postbuild": "npm run build"
 	},

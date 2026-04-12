@@ -1,9 +1,9 @@
 export async function getKeys() {
 	if (process.env.NODE_ENV === "production") {
-		return import("./prod.js");
+		return await import("./prod.js");
 	} else if (process.env.NODE_ENV === "ci") {
-		return import("./ci.js");
+		return await import("./ci.js");
 	} else {
-		return import("./dev.js");
+		return await import("./dev.js");
 	}
 }

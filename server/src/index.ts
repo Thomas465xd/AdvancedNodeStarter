@@ -37,41 +37,50 @@ if (process.env.NODE_ENV === "production") {
     }
 }
 
-const keys = await getKeys();
+async function bootstrap() {
+    try {
+        const keys = await getKeys();
 
-connectDB(); 
-connectRedis(); 
+        await connectDB(); 
+        await connectRedis(); 
 
-const app = express();
+        const app = express();
 
-app.use(bodyParser.json());
+        app.use(bodyParser.json());
 
-app.use(
-	cookieSession({
-		maxAge: 30 * 24 * 60 * 60 * 1000,
-		keys: [keys.cookieKey],
-	}),
-);
+        app.use(
+            cookieSession({
+                maxAge: 30 * 24 * 60 * 60 * 1000,
+                keys: [keys.cookieKey],
+            }),
+        );
 
-app.use(passport.initialize());
+        app.use(passport.initialize());
 
-app.use(passport.session());
+        app.use(passport.session());
 
-app.use(morgan("dev"));
+        app.use(morgan("dev"));
 
-app.use(authRoutes);
-app.use(blogRoutes); 
+        app.use(authRoutes);
+        app.use(blogRoutes); 
 
-if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "ci") {
-	app.use(express.static("client/build"));
+        if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "ci") {
+            app.use(express.static("client/build"));
 
-	app.get("*", (req: Request, res: Response) => {
-		res.sendFile(path.resolve("client", "build", "index.html"));
-	});
+            app.get("*", (req: Request, res: Response) => {
+                res.sendFile(path.resolve("client", "build", "index.html"));
+            });
+        }
+
+        const PORT = process.env.PORT || 5000;
+
+        app.listen(PORT, () => {
+            console.log(colors.green(`Listening on Port ${colors.bold(`${PORT}`)}`));
+        });
+    } catch (error) {
+        console.error("Failed to bootstrap application:", error);
+        process.exit(1);
+    }
 }
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-	console.log(colors.green(`Listening on Port ${colors.bold(`${PORT}`)}`));
-});
+bootstrap();
