@@ -33,9 +33,9 @@ jobs:
             PORT: 3000
 
         steps:
-            - uses: actions/checkout@v2
+            - uses: actions/checkout@v4
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v4
               with:
                   node-version: ${{ matrix.node-version }}
             - name: Install Dependencies and Build
@@ -46,8 +46,13 @@ jobs:
             - name: Start server
               run: |
                   cd server
-                  nohup npm run start &
-                  sleep 3
+                  nohup npm run start > server.log 2>&1 &
+                  sleep 5
+                  if ! curl -sf http://localhost:3000 > /dev/null 2>&1; then
+                    echo "Server failed to start. Logs:"
+                    cat server.log
+                    exit 1
+                  fi
             - name: Run tests
               env:
                   NODE_OPTIONS: --experimental-vm-modules
