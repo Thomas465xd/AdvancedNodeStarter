@@ -49,6 +49,8 @@ jobs:
                   nohup npm run start &
                   sleep 3
             - name: Run tests
+              env:
+                  NODE_OPTIONS: --experimental-vm-modules
               run: |
                   cd server
                   npm run tests

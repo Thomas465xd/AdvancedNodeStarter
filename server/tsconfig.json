@@ -8,13 +8,15 @@
         "moduleResolution": "NodeNext",
         "module": "NodeNext",
         "strict": true,
+        "skipLibCheck": true,
         "sourceMap": true,
         "esModuleInterop": true,
         "declaration": true,
         "types": ["jest", "node"]
     },
     "ts-node": {
-        "esm": true
+        "esm": true,
+        "experimentalEsm": true
     },
     "include": ["src/**/*.ts"],
     "exclude": ["dist", "client", "node_modules"]
