@@ -1,4 +1,5 @@
 import path from "path";
+import { fileURLToPath } from "url";
 import bodyParser from "body-parser";
 import passport from "passport";
 import cookieSession from "cookie-session";
@@ -65,10 +66,12 @@ async function bootstrap() {
         app.use(blogRoutes); 
 
         if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "ci") {
-            app.use(express.static("client/build"));
+            const __dirname = path.dirname(fileURLToPath(import.meta.url));
+            const clientBuild = path.resolve(__dirname, "..", "..", "client", "build");
+            app.use(express.static(clientBuild));
 
             app.get("*", (req: Request, res: Response) => {
-                res.sendFile(path.resolve("client", "build", "index.html"));
+                res.sendFile(path.join(clientBuild, "index.html"));
             });
         }
 
