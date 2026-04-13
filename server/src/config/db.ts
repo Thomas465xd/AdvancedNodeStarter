@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import colors from "colors";
 import { exit } from "process";
-import { getKeys } from "./keys.js";
+import { getKeys } from "./keys";
 
 export const connectDB = async () => {
     try {

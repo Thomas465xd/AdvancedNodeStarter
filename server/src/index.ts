@@ -3,16 +3,16 @@ import bodyParser from "body-parser";
 import passport from "passport";
 import cookieSession from "cookie-session";
 import express, { Request, Response } from "express";
-import { getKeys } from "./config/keys.js";
+import { getKeys } from "./config/keys";
 import morgan from "morgan";
-import "./types/express.js";
-import "./services/passport.js";
-import "./services/cache.js"; 
+import "./types/express";
+import "./services/passport";
+import "./services/cache"; 
 import colors from "colors";
-import authRoutes from "./routes/authRoutes.js";
-import blogRoutes from "./routes/blogRoutes.js";
-import { connectDB } from "./config/db.js";
-import { connectRedis } from "./config/redis.js";
+import authRoutes from "./routes/authRoutes";
+import blogRoutes from "./routes/blogRoutes";
+import { connectDB } from "./config/db";
+import { connectRedis } from "./config/redis";
 
 if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = "development";

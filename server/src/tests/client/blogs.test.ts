@@ -1,4 +1,4 @@
-import { Action } from "../helpers/page.js";
+import { Action } from "../helpers/page";
 
 describe("When logged in", () => {
     beforeEach(async () =>  {

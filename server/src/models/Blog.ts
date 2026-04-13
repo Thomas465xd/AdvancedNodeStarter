@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
-import { UserInterface } from "./User.js";
+import { UserInterface } from "./User";
 
 export interface BlogInterface extends Document {
     title: string, 

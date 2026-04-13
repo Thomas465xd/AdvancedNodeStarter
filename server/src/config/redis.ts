@@ -1,6 +1,6 @@
 import { createClient, RedisClientType } from 'redis';
 import colors from "colors"
-import { getKeys } from './keys.js';
+import { getKeys } from './keys';
 
 let client: RedisClientType;
 

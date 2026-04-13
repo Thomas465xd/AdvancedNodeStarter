@@ -5,8 +5,8 @@
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
-		"start": "node --loader ts-node/esm src/index.ts",
-		"server": "nodemon --exec \"node --loader ts-node/esm\" src/index.ts --trace-warnings",
+		"start": "tsx src/index.ts",
+		"server": "nodemon --exec tsx src/index.ts --trace-warnings",
 		"client": "npm run start --prefix ../client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"tests": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watchAll",
@@ -52,6 +52,7 @@
 		"supertest": "^7.1.4",
 		"ts-jest": "^29.4.6",
 		"ts-node": "^10.9.2",
+		"tsx": "^4.21.0",
 		"typescript": "^5.7.3"
 	}
 }

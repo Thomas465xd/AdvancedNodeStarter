@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { clearHash } from "../services/cache.js";
+import { clearHash } from "../services/cache";
 
 const clearCache = async (req: Request, res: Response, next: NextFunction) => {
     // finish event fires up once request handler completes execution.

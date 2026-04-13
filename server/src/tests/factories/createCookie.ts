@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { getKeys } from "../../config/keys.js";
+import { getKeys } from "../../config/keys";
 import { Buffer } from "node:buffer";
 import Keygrip from "keygrip";
-import { UserInterface } from "../../models/User.js";
+import { UserInterface } from "../../models/User";
 
 //* Declare setCookie global helper function
 export const createCookie = async (user: UserInterface) => {

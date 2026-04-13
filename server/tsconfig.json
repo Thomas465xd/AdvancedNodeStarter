@@ -5,18 +5,14 @@
         "lib": ["esnext"],
         "target": "ESNext",
         "isolatedModules": true,
-        "moduleResolution": "NodeNext",
-        "module": "NodeNext",
+        "moduleResolution": "Bundler",
+        "module": "ESNext",
         "strict": true,
         "skipLibCheck": true,
         "sourceMap": true,
         "esModuleInterop": true,
         "declaration": true,
         "types": ["jest", "node"]
-    },
-    "ts-node": {
-        "esm": true,
-        "experimentalResolver": true
     },
     "include": ["src/**/*.ts"],
     "exclude": ["dist", "client", "node_modules"]

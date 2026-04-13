@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import "../types/mongoose.js";
-import { getRedisClient } from "../config/redis.js";
+import "../types/mongoose";
+import { getRedisClient } from "../config/redis";
 
 const exec = mongoose.Query.prototype.exec; 
 

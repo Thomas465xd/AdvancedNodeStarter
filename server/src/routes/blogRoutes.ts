@@ -1,7 +1,7 @@
-import requireLogin from "../middlewares/requireLogin.js";
+import requireLogin from "../middlewares/requireLogin";
 import { Request, Response, Router } from "express";
-import Blog from "../models/Blog.js";
-import clearCache from "../middlewares/clearCache.js";
+import Blog from "../models/Blog";
+import clearCache from "../middlewares/clearCache";
 
 const router = Router(); 
 

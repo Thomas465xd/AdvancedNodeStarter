@@ -1,4 +1,4 @@
-import { UserInterface } from "../models/User.js";
+import { UserInterface } from "../models/User";
 
 declare global {
     namespace Express {

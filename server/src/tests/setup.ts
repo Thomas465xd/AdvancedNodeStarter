@@ -5,10 +5,10 @@ dotenv.config({ path: ".env.test" });
 
 import mongoose from "mongoose";
 import puppeteer, { Browser } from "puppeteer";
-import { createCookie, createUser } from "./factories/index.js"
-import { UserInterface } from "../models/User.js";
-import { getKeys } from "../config/keys.js";
-import CustomPage, { CustomPageProxy } from "./helpers/page.js"; 
+import { createCookie, createUser } from "./factories/index"
+import { UserInterface } from "../models/User";
+import { getKeys } from "../config/keys";
+import CustomPage, { CustomPageProxy } from "./helpers/page"; 
 
 //? Define and type global testing variables and functions
 // Make page and browser variables globally accessible 
