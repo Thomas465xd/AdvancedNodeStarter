@@ -2,7 +2,6 @@ node_modules
 nohup.out
 .DS_Store
 .env
-src/config/ci.ts
 src/config/dev.ts 
 src/config/prod.ts 
 .env.test
