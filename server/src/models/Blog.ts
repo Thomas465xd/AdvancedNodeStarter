@@ -4,6 +4,7 @@ import { UserInterface } from "./User";
 export interface BlogInterface extends Document {
     title: string, 
     content: string, 
+    imageUrl: string, 
     _user:  UserInterface, 
     createdAt: Date, 
     updatedAt: Date, 
@@ -13,6 +14,7 @@ export interface BlogInterface extends Document {
 export interface BlogAttrs {
     title: string, 
     content: string, 
+    imageUrl?: string, 
     _user: UserInterface
 }
 
@@ -31,6 +33,10 @@ const blogSchema = new Schema<BlogInterface>(
         content: {
             type: String, 
             required: true
+        },
+        imageUrl: {
+            type: String, 
+            required: false
         },
         _user: { 
             type: Schema.Types.ObjectId, 

@@ -21,11 +21,12 @@ router.get("/api/blogs", requireLogin, async (req: Request, res: Response) => {
 });
 
 router.post("/api/blogs", requireLogin, clearCache, async (req: Request, res: Response) => {
-    const { title, content } = req.body;
+    const { title, content, imageUrl } = req.body;
 
     const blog = new Blog({
         title,
         content,
+        imageUrl, 
         _user: req.user!.id,
     });
 
