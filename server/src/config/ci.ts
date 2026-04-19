@@ -1,5 +1,7 @@
 export const googleClientID = process.env.GOOGLE_CLIENT_ID || "ci-test-client-id"
 export const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || "ci-test-client-secret"
+export const awsAccessSecret = process.env.AWS_ACCESS_SECRET!
+export const awsAccessId = process.env.AWS_ACCESS_ID!
 export const mongoURI = "mongodb://127.0.0.1:27017/blogs"
 export const redisHost = "127.0.0.1"
 export const redisPort = 6379

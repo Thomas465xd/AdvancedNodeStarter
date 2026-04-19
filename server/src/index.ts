@@ -12,8 +12,10 @@ import "./services/cache";
 import colors from "colors";
 import authRoutes from "./routes/authRoutes";
 import blogRoutes from "./routes/blogRoutes";
+import uploadRoutes from "./routes/uploadRoutes";
 import { connectDB } from "./config/db";
 import { connectRedis } from "./config/redis";
+import { testS3Connection } from "./config/aws";
 
 if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = "development";
@@ -33,6 +35,14 @@ if (process.env.NODE_ENV === "production") {
         throw new Error("GOOGLE_CLIENT_ID is not defined");
     }
 
+    if(!process.env.AWS_ACCESS_SECRET) {
+        throw new Error("AWS_ACCESS_SECRET is not defined");
+    }
+
+    if(!process.env.AWS_ACCESS_ID) {
+        throw new Error("AWS_ACCESS_ID is not defined");
+    }
+
     if(!process.env.REDIS_PASSWORD) {
         throw new Error("REDIS_PASSWORD is not defined");
     }
@@ -42,8 +52,10 @@ async function bootstrap() {
     try {
         const keys = await getKeys();
 
+        //? App startup connections
         await connectDB(); 
         await connectRedis(); 
+        await testS3Connection(); 
 
         const app = express();
 
@@ -64,7 +76,9 @@ async function bootstrap() {
 
         app.use(authRoutes);
         app.use(blogRoutes); 
+        app.use(uploadRoutes); 
 
+        //? In production, let express app send HTML to the client
         if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "ci") {
             const __dirname = path.dirname(fileURLToPath(import.meta.url));
             const clientBuild = path.resolve(__dirname, "..", "..", "client", "build");
